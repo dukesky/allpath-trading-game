@@ -155,7 +155,7 @@ export function stepEmoji(s: StepLog): string {
 }
 
 export type TitleId =
-  | "harvested" | "whale" | "fullleek" | "soldbottom" | "boughttop" | "coward" | "diamond" | "halfhearted" | "leek";
+  | "harvested" | "whale" | "fullleek" | "soldbottom" | "boughttop" | "coward" | "diamond" | "soldearly" | "halfhearted" | "leek";
 
 export function pickTitle(log: StepLog[], finalEq: number, bhFinal: number): TitleId {
   const ret = finalEq / START_CASH - 1;
@@ -170,6 +170,7 @@ export function pickTitle(log: StepLog[], finalEq: number, bhFinal: number): Tit
   if (boughtTop) return "boughttop";
   if (log.every((s) => s.expAfter === 0)) return "coward";
   if (ret >= bh - 0.03) return "diamond";
+  if (ret >= 0.15) return "soldearly"; // made real money, but holding made more
   const bigMoves = log.filter((s, i) => i > 0 && Math.abs(s.expAfter - s.expBefore) > 0.2).length;
   return bigMoves <= 1 ? "halfhearted" : "leek";
 }

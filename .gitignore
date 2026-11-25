@@ -3,3 +3,4 @@ dist
 art/raw
 .DS_Store
 *.local
+.claude

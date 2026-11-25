@@ -33,6 +33,7 @@ function Art({ name, className = "", alt = "" }: { name: string; className?: str
 
 const money = (x: number) =>
   "$" + Math.round(x).toLocaleString("en-US");
+const tone = (x: number) => (Math.abs(x) < 0.005 ? "flat" : x > 0 ? "up" : "down");
 const pct = (x: number, digits = 0) => `${x >= 0 ? "+" : "−"}${Math.abs(x * 100).toFixed(digits)}%`;
 
 type Screen =
@@ -290,8 +291,8 @@ function PlayScreen(props: {
       {last && (
         <div className={`move-banner ${last.liquidated ? "rekt" : ""}`} role="status">
           <span>⏩ {run.decisions[game.step - 1] !== undefined ? (iNow - run.decisions[game.step - 1]) : ""} {t(UI.weeksLater)}</span>
-          <span>{t(UI.assetMoved)} <b className={last.assetMove >= 0 ? "up" : "down"}>{pct(last.assetMove)}</b></span>
-          <span>{t(UI.you)} <b className={last.equityAfter >= last.equityBefore ? "up" : "down"}>{pct(last.equityBefore > 0 ? last.equityAfter / last.equityBefore - 1 : 0)}</b></span>
+          <span>{t(UI.assetMoved)} <b className={tone(last.assetMove)}>{pct(last.assetMove)}</b></span>
+          <span>{t(UI.youRound)} <b className={tone(last.equityBefore > 0 ? last.equityAfter / last.equityBefore - 1 : 0)}>{pct(last.equityBefore > 0 ? last.equityAfter / last.equityBefore - 1 : 0)}</b></span>
           {last.liquidated && <p className="rekt-line">💀 {t(UI.liquidated)}</p>}
         </div>
       )}
@@ -302,6 +303,7 @@ function PlayScreen(props: {
           {game.wiped && <h2>{t(UI.wipedTitle)}</h2>}
           {game.wiped && <p>{t(UI.wipedBody)}</p>}
           <p className="big-number">{money(eq)}</p>
+          <p className="end-total">{t(UI.totalReturn)} <span className={tone(eq / START_CASH - 1)}>{pct(eq / START_CASH - 1)}</span></p>
           <button className="btn btn-primary btn-big" onClick={onFinish}>{t(UI.seeResult)}</button>
         </section>
       ) : (
@@ -345,7 +347,7 @@ function PlayScreen(props: {
           <section className="wallet">
             <div><span>{t(UI.total)}</span><b>{money(eq)}</b></div>
             <div><span>{t(UI.invested)}</span><b>{Math.round(ex * 100)}%</b></div>
-            <div><span>{t(UI.pnl)}</span><b className={eq >= START_CASH ? "up" : "down"}>{pct(eq / START_CASH - 1)}</b></div>
+            <div><span>{t(UI.pnl)}</span><b className={tone(eq / START_CASH - 1)}>{pct(eq / START_CASH - 1)}</b></div>
           </section>
 
           <section className="actions" aria-label="Your move">

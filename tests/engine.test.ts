@@ -62,6 +62,10 @@ describe("titles", () => {
     ];
     expect(pickTitle(log, 8000, 9000)).toBe("soldbottom");
   });
+  it("a big winner who trailed buy-and-hold sold too early", () => {
+    const log = [{ ...base, action: "all" as const, expBefore: 0, expAfter: 1 }, { ...base, action: "cash" as const, expBefore: 1, expAfter: 0 }];
+    expect(pickTitle(log, 67_669, 114_000)).toBe("soldearly");
+  });
   it("wiped accounts are harvested", () => {
     expect(pickTitle([], 50, 9000)).toBe("harvested");
   });

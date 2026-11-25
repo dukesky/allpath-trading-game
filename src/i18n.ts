@@ -39,8 +39,10 @@ export const UI = {
   vsTrend: { en: "Vs 40-week trend", zh: "相对 40 周均线" },
   weeksLater: { en: "weeks later", zh: "周后" },
   timeSkip: { en: "later…", zh: "后……" },
-  assetMoved: { en: "Asset", zh: "标的" },
+  assetMoved: { en: "Asset", zh: "标的（本轮）" },
   you: { en: "You", zh: "你" },
+  youRound: { en: "You this round", zh: "你（本轮）" },
+  totalReturn: { en: "Total return", zh: "总收益" },
   liquidated: {
     en: "MARGIN CALL. Your broker sold everything at the worst price.",
     zh: "爆仓了！券商在最差的价格把你全卖了。"
@@ -150,6 +152,11 @@ export const TITLES: Record<TitleId, { name: L; desc: L; art: string }> = {
     name: { en: "Diamond Hands", zh: "钻石手" },
     desc: { en: "You kept up with doing nothing. That's harder than it sounds.", zh: "你跟上了「躺平」的收益。这比听起来难多了。" },
     art: "mood-diamond"
+  },
+  soldearly: {
+    name: { en: "Sold Too Early", zh: "卖飞侠" },
+    desc: { en: "You made real money. Doing nothing made even more. The classic retail story: take profits, then watch it keep flying.", zh: "你确实赚到钱了，但躺平赚得更多。散户经典剧情：落袋为安，然后眼睁睁看着它继续起飞。" },
+    art: "mood-moon"
   },
   halfhearted: {
     name: { en: "Half-Hearted Hero", zh: "半仓侠" },

@@ -14,6 +14,7 @@
   --pop: 4px 4px 0 var(--ink);
   --display: "Dela Gothic One", "Noto Sans SC", system-ui, sans-serif;
   --body: "M PLUS Rounded 1c", "Noto Sans SC", system-ui, sans-serif;
+  --display-weight: 400;
   color-scheme: light;
 }
 
@@ -21,7 +22,8 @@
 :root[data-lang="zh"] {
   --up: var(--loss);
   --down: var(--leek);
-  --display: "Dela Gothic One", "Noto Sans SC", sans-serif;
+  --display: "Noto Sans SC", sans-serif;
+  --display-weight: 900;
   --body: "Noto Sans SC", "M PLUS Rounded 1c", sans-serif;
 }
 
@@ -55,10 +57,11 @@ img { display: block; max-width: 100%; }
 .panel {
   background: var(--paper); border: var(--line); border-radius: 18px; box-shadow: var(--pop); padding: 16px;
 }
-.panel h2, .panel h3 { margin: 0 0 8px; font-family: var(--display); font-weight: 400; line-height: 1.25; }
+.panel h2, .panel h3 { margin: 0 0 8px; font-family: var(--display); font-weight: var(--display-weight); line-height: 1.25; }
 .panel h3 { font-size: 1.1rem; }
 .up { color: var(--up); }
 .down { color: var(--down); }
+.flat { color: var(--ink-soft); }
 
 /* ── Buttons ─────────────────────────────────────────────── */
 .btn {
@@ -70,7 +73,7 @@ img { display: block; max-width: 100%; }
 .btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
 .btn-primary { background: var(--tangerine); color: #fff; text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2); }
 .btn-dark { background: var(--ink); color: var(--paper); }
-.btn-big { font-size: 1.1rem; padding: 14px 20px; width: 100%; font-family: var(--display); font-weight: 400; letter-spacing: 0.02em; }
+.btn-big { font-size: 1.1rem; padding: 14px 20px; width: 100%; font-family: var(--display); font-weight: var(--display-weight); letter-spacing: 0.02em; }
 .btn-quiet { box-shadow: none; border-width: 2px; background: transparent; }
 .link-back { align-self: flex-start; background: none; border: 0; padding: 4px 0; font-weight: 700; color: var(--ink-soft); cursor: pointer; }
 
@@ -79,7 +82,7 @@ img { display: block; max-width: 100%; }
 .hero-art { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border: var(--line); border-radius: 22px; box-shadow: var(--pop); background: var(--butter); }
 .hero-art.art-fallback { font-size: 6rem; }
 .game-title {
-  font-family: var(--display); font-weight: 400; font-size: clamp(2.3rem, 11vw, 3.4rem); line-height: 1;
+  font-family: var(--display); font-weight: var(--display-weight); font-size: clamp(2.3rem, 11vw, 3.4rem); line-height: 1;
   margin: 10px 0 0; color: var(--tangerine);
   -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; text-shadow: 4px 4px 0 var(--ink);
   transform: rotate(-2deg);
@@ -89,7 +92,7 @@ img { display: block; max-width: 100%; }
 .how ol { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
 
 /* ── Pick screens ───────────────────────────────────────── */
-.screen-h { font-family: var(--display); font-weight: 400; font-size: 1.6rem; margin: 0; line-height: 1.2; }
+.screen-h { font-family: var(--display); font-weight: var(--display-weight); font-size: 1.6rem; margin: 0; line-height: 1.2; }
 .stack { display: grid; gap: 12px; }
 .pick-card {
   display: flex; gap: 14px; align-items: center; text-align: left; cursor: pointer;
@@ -100,7 +103,7 @@ img { display: block; max-width: 100%; }
 .pick-card:active { transform: translate(4px, 4px); box-shadow: none; }
 .pick-art { width: 88px; height: 88px; flex: none; border-radius: 14px; border: 2px solid var(--ink); object-fit: cover; background: var(--leek-pale); }
 .pick-text { display: grid; gap: 2px; }
-.pick-text strong { font-family: var(--display); font-weight: 400; font-size: 1.1rem; line-height: 1.3; }
+.pick-text strong { font-family: var(--display); font-weight: var(--display-weight); font-size: 1.1rem; line-height: 1.3; }
 .pick-text em { font-style: normal; font-size: 0.86rem; color: var(--ink-soft); }
 .asset-emoji { font-size: 2.4rem; width: 64px; height: 64px; display: grid; place-items: center; flex: none; border: 2px solid var(--ink); border-radius: 50%; background: var(--butter); }
 .asset-spicy .asset-emoji { background: #ffd0bd; }
@@ -134,7 +137,7 @@ img { display: block; max-width: 100%; }
 }
 .manga-art { width: 104px; height: 104px; border-radius: 12px; border: 2px solid var(--ink); object-fit: cover; background: var(--leek-pale); }
 .manga-tag {
-  display: inline-block; background: var(--loss); color: #fff; font-family: var(--display); font-size: 0.8rem;
+  display: inline-block; background: var(--loss); color: #fff; font-family: var(--display); font-weight: var(--display-weight); font-size: 0.8rem;
   padding: 1px 10px; border-radius: 4px; transform: rotate(-3deg); margin-bottom: 4px;
 }
 .manga-text p { margin: 0; font-weight: 700; font-size: 1.02rem; line-height: 1.5; }
@@ -166,7 +169,7 @@ img { display: block; max-width: 100%; }
   stroke-dasharray: 1; stroke-dashoffset: var(--from, 0); animation: draw 800ms ease-out forwards;
 }
 .chart-now { fill: var(--tangerine); stroke: var(--ink); stroke-width: 2; }
-.chart-q { font-family: var(--display); font-size: 40px; fill: rgba(43, 29, 20, 0.18); }
+.chart-q { font-family: var(--display); font-weight: var(--display-weight); font-size: 40px; fill: rgba(43, 29, 20, 0.18); }
 .mk circle { stroke: var(--ink); stroke-width: 2; }
 .mk-buy circle { fill: var(--up); }
 .mk-sell circle { fill: var(--down); }
@@ -199,7 +202,7 @@ img { display: block; max-width: 100%; }
   backdrop-filter: blur(2px); z-index: 30; animation: fade 150ms ease-out;
 }
 .skip span {
-  font-family: var(--display); font-size: 1.8rem; background: var(--tangerine); color: #fff;
+  font-family: var(--display); font-weight: var(--display-weight); font-size: 1.8rem; background: var(--tangerine); color: #fff;
   border: var(--line); border-radius: 16px; padding: 10px 22px; box-shadow: var(--pop);
   -webkit-text-stroke: 1px var(--ink); paint-order: stroke fill;
   animation: whoosh 900ms ease-in-out forwards;
@@ -209,7 +212,7 @@ img { display: block; max-width: 100%; }
 .end-panel h2 { margin: 0; }
 .end-panel p { margin: 0; }
 .end-art { width: 180px; height: 180px; border-radius: 16px; border: 2px solid var(--ink); object-fit: cover; }
-.big-number { font-family: var(--display); font-size: 1.8rem; line-height: 1.2; margin: 4px 0; font-variant-numeric: tabular-nums; }
+.big-number { font-family: var(--display); font-weight: var(--display-weight); font-size: 1.8rem; line-height: 1.2; margin: 4px 0; font-variant-numeric: tabular-nums; }
 
 /* ── Guess ───────────────────────────────────────────────── */
 .guess {
@@ -225,7 +228,7 @@ img { display: block; max-width: 100%; }
 /* ── Result ──────────────────────────────────────────────── */
 .title-card { text-align: center; display: grid; justify-items: center; gap: 4px; background: var(--butter); }
 .title-art { width: 200px; height: 200px; border-radius: 18px; border: var(--line); object-fit: cover; background: var(--paper); }
-.title-name { font-family: var(--display); font-size: 1.6rem; line-height: 1.2; margin: 6px 0 0; }
+.title-name { font-family: var(--display); font-weight: var(--display-weight); font-size: 1.6rem; line-height: 1.2; margin: 6px 0 0; }
 .title-desc { margin: 0; max-width: 28em; }
 .emoji-row { font-size: 1.5rem; letter-spacing: 0.1em; margin: 0; }
 .reveal-art { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; border: 2px solid var(--ink); margin-bottom: 10px; }
@@ -291,3 +294,5 @@ img { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 1ms !important; transition: none !important; }
 }
+
+.end-total { font-weight: 800; font-size: 1.1rem; margin: 0; }
