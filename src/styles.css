@@ -252,13 +252,15 @@ img { display: block; max-width: 100%; }
 .chart-base { stroke: var(--ink-soft); stroke-dasharray: 2 4; }
 .eq { fill: none; stroke-linejoin: round; }
 .eq-you { stroke: var(--tangerine); stroke-width: 3.2; }
-.eq-bh { stroke: var(--ink); stroke-width: 1.8; stroke-dasharray: 5 4; }
+.eq-bh { stroke: var(--ink); stroke-width: 2; stroke-dasharray: 5 4; }
 .eq-pete { stroke: var(--loss); stroke-width: 1.6; opacity: 0.8; }
-.eq-bot { stroke: var(--leek); stroke-width: 2; }
-.legend { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; font-size: 0.85rem; font-weight: 700; margin: 6px 0 0; }
-.legend i { display: inline-block; width: 18px; height: 4px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
+.eq-bot { stroke: var(--leek); stroke-width: 3.5; opacity: 0.85; }
+.legend { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font-size: 0.85rem; font-weight: 700; margin: 8px 0 0; }
+.legend li { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { display: inline-block; width: 22px; height: 4px; border-radius: 2px; }
+.legend-note { margin: 6px 0 0; font-size: 0.82rem; color: var(--ink-soft); }
 .lg-you { background: var(--tangerine); }
-.lg-bh { background: var(--ink); }
+.lg-bh { background: repeating-linear-gradient(90deg, var(--ink) 0 5px, transparent 5px 8px); }
 .lg-pete { background: var(--loss); }
 .lg-bot { background: var(--leek); }
 

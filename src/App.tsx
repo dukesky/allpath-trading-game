@@ -437,6 +437,11 @@ function ResultScreen(props: {
     { key: "bot", label: `🤖 ${t(UI.bot)}`, ret: botRet }
   ].sort((a, b) => b.ret - a.ret);
   const maxAbs = Math.max(...rows.map((r) => Math.abs(r.ret)), 0.01);
+  const same = (a: number[], b: number[]) => a.length === b.length && a.every((v, i) => Math.abs(v - b[i]) <= Math.abs(b[i]) * 0.002);
+  const overlaps = [
+    same(s.bot, s.bh) && t({ en: "🗿 and 🤖 are the same line this game (the robot never sold).", zh: "这一局 🗿 躺平 和 🤖 机器人 两条线完全重合（机器人一直没卖）。" }),
+    same(s.pete, s.bh) && t({ en: "😱 Pete never panicked this game, so his line is the same as 🗿.", zh: "这一局 😱 皮特没有恐慌过，和 🗿 躺平 是同一条线。" })
+  ].filter(Boolean) as string[];
 
   // Pre-render the result card so the share sheet opens within the tap (iOS needs that).
   const [card, setCard] = useState<File | null>(null);
@@ -517,13 +522,20 @@ function ResultScreen(props: {
             </li>
           ))}
         </ul>
+        {/* Draw order: robot and Pete underneath, dashed buy-and-hold on top so it stays visible when curves coincide, you last. */}
         <EquityChart lines={[
-          { values: s.bh, cls: "eq-bh" },
-          { values: s.pete, cls: "eq-pete" },
           { values: s.bot, cls: "eq-bot" },
+          { values: s.pete, cls: "eq-pete" },
+          { values: s.bh, cls: "eq-bh" },
           { values: game.curve, cls: "eq-you" }
         ]} />
-        <p className="legend"><i className="lg-you" />{t(UI.you)} <i className="lg-bh" />🗿 <i className="lg-pete" />😱 <i className="lg-bot" />🤖</p>
+        <ul className="legend">
+          <li><i className="lg-you" />🥬 {t(UI.you)}</li>
+          <li><i className="lg-bh" />🗿 {t({ en: "Did nothing", zh: "躺平" })}</li>
+          <li><i className="lg-pete" />😱 {t({ en: "Panic Pete", zh: "恐慌皮特" })}</li>
+          <li><i className="lg-bot" />🤖 {t({ en: "Robot", zh: "机器人" })}</li>
+        </ul>
+        {overlaps.length > 0 && <p className="legend-note">{overlaps.join(" ")}</p>}
       </section>
 
       <section className="panel">
