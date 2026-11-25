@@ -455,38 +455,37 @@ function ResultScreen(props: {
       bhLabel: `🗿 ${t({ en: "Do nothing", zh: "躺平" })}`, bhRet, botLabel: "🤖", botRet,
       emojis: s.emojis, challenge: t(UI.shareLine), url: shareUrl(game.run)
     }).then((blob) => {
-      if (alive && blob) setCard(new File([blob], "bagholder-simulator.png", { type: "image/png" }));
+      if (alive && blob) setCard(new File([blob], `${t(UI.title)}-${t(title.name)}.jpg`, { type: "image/jpeg", lastModified: Date.now() }));
     });
     return () => { alive = false; };
   }, [lang, s, sc.code, game.run, title, bhRet, botRet]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const cardUrl = useMemo(() => (card ? URL.createObjectURL(card) : null), [card]);
-  useEffect(() => () => { if (cardUrl) URL.revokeObjectURL(cardUrl); }, [cardUrl]);
   const isPhone = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+  // Image + caption. Many apps (WeChat Moments included) drop shared text, so the caption
+  // is also put on the clipboard for the player to paste.
   const doShare = async () => {
-    const text = shareText(t, game.run, s.emojis, s.ret, s.finalEq, t(title.name));
-    const url = shareUrl(game.run);
+    const caption = `${shareText(t, game.run, s.emojis, s.ret, s.finalEq, t(title.name))} ${shareUrl(game.run)}`;
+    let copiedOk = false;
+    try { await navigator.clipboard.writeText(caption); copiedOk = true; } catch { /* clipboard blocked */ }
     try {
       if (navigator.share && isPhone) {
-        if (card && navigator.canShare?.({ files: [card] })) {
-          await navigator.share({ files: [card], text: `${text} ${url}` });
-        } else {
-          await navigator.share({ text, url });
+        const data: ShareData = card && navigator.canShare?.({ files: [card] })
+          ? { files: [card], title: t(UI.title), text: caption }
+          : { title: t(UI.title), text: caption };
+        if (copiedOk) setCopied(true);
+        await navigator.share(data);
+      } else {
+        if (card) {
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(card);
+          a.download = card.name;
+          a.click();
+          window.setTimeout(() => URL.revokeObjectURL(a.href), 2000);
         }
-        return;
+        setCopied(copiedOk);
       }
-      await navigator.clipboard.writeText(`${text} ${url}`);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2500);
     } catch { /* user cancelled */ }
-  };
-  const saveCard = () => {
-    if (!card) return;
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(card);
-    a.download = card.name;
-    a.click();
-    window.setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+    window.setTimeout(() => setCopied(false), 6000);
   };
 
   return (
@@ -570,9 +569,8 @@ function ResultScreen(props: {
       </section>
 
       <div className="result-actions">
-        <button className="btn btn-primary btn-big" onClick={doShare}>{copied ? t(UI.copied) : t(UI.share)}</button>
-        <button className="btn" onClick={saveCard} disabled={!card}>🖼️ {t(UI.saveCard)}</button>
-        {cardUrl && <img className="card-preview" src={cardUrl} alt={t(UI.saveCard)} />}
+        <button className="btn btn-primary btn-big" onClick={doShare}>{t(UI.share)}</button>
+        {copied && <p className="copied-note" role="status">{t(isPhone ? UI.copiedPhone : UI.copiedDesktop)}</p>}
         <button className="btn btn-big" onClick={onAgain}>🎲 {t(UI.again)}</button>
         <button className="btn btn-quiet" onClick={onRetry}>{t(UI.retry)}</button>
       </div>

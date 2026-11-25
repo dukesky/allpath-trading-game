@@ -181,5 +181,5 @@ export async function drawShareCard(input: CardInput): Promise<Blob | null> {
   ctx.fillStyle = BUTTER;
   ctx.fillText(input.url.replace(/^https?:\/\//, ""), W / 2, 1350, W - 200);
 
-  return new Promise((resolve) => canvas.toBlob((b) => resolve(b), "image/png"));
+  return new Promise((resolve) => canvas.toBlob((b) => resolve(b), "image/jpeg", 0.9));
 }
