@@ -103,27 +103,28 @@ export async function drawShareCard(input: CardInput): Promise<Blob | null> {
   ctx.fillStyle = "rgba(43,29,20,0.08)";
   for (let y = 18; y < H; y += 36) for (let x = 18; x < W; x += 36) ctx.fillRect(x, y, 3, 3);
 
-  // Header line.
-  ctx.fillStyle = INK;
-  ctx.textAlign = "left";
+  // Header line: scenario tag on the right, game title squeezed to fit the rest.
   ctx.textBaseline = "alphabetic";
-  ctx.font = font(display, 56);
+  ctx.font = font(body, 32);
+  ctx.fillStyle = "#6b5545";
+  ctx.textAlign = "right";
+  ctx.fillText(input.scenarioLine, W - 64, 114);
+  const tagW = ctx.measureText(input.scenarioLine).width;
+  ctx.textAlign = "left";
+  ctx.font = font(display, zh ? 56 : 48);
   ctx.fillStyle = TANGERINE;
   ctx.lineWidth = 6;
   ctx.strokeStyle = INK;
-  ctx.strokeText(input.gameTitle, 64, 120);
-  ctx.fillText(input.gameTitle, 64, 120);
-  ctx.font = font(body, 34);
-  ctx.fillStyle = "#6b5545";
-  ctx.textAlign = "right";
-  ctx.fillText(input.scenarioLine, W - 64, 116);
+  const titleMax = W - 128 - tagW - 32;
+  ctx.strokeText(input.gameTitle, 64, 118, titleMax);
+  ctx.fillText(input.gameTitle, 64, 118, titleMax);
 
   // Main card.
   const cx = 64, cy = 170, cw = W - 128, ch = 1010;
   sticker(ctx, cx, cy, cw, ch, 44, BUTTER);
 
   const art = await loadImage(input.artUrl);
-  const as = 400;
+  const as = 360;
   const ax = (W - as) / 2, ay = cy + 50;
   sticker(ctx, ax, ay, as, as, 36, PAPER);
   if (art) {
@@ -145,11 +146,11 @@ export async function drawShareCard(input: CardInput): Promise<Blob | null> {
 
   ctx.font = font(body, 32);
   ctx.fillStyle = "#4a3828";
-  const descLines = wrap(ctx, input.titleDesc, cw - 140, zh).slice(0, 2);
+  const descLines = wrap(ctx, input.titleDesc, cw - 120, zh).slice(0, 3);
   descLines.forEach((l, i) => ctx.fillText(l, W / 2, ay + as + 192 + i * 44));
 
   // Money line.
-  const my = ay + as + 316;
+  const my = ay + as + 300 + (descLines.length - 2) * 44;
   ctx.font = font(display, 64);
   const left = money(10_000) + "  →  ";
   const right = money(input.finalEq);
