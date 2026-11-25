@@ -73,6 +73,10 @@ export const UI = {
     en: "It followed one rule written in advance and never panicked. AllPath lets you write rules like that in plain English. Code watches them every hour, an AI agent explains what it sees, and nothing trades until you approve.",
     zh: "它只是按提前写好的一条规则执行，从不恐慌。AllPath 让你用大白话写这样的规则：代码每小时盯盘，AI 解释它看到了什么，不经你批准绝不下单。"
   },
+  ctaRobotLost: {
+    en: "Rules aren't magic either: this time the robot trailed doing nothing, because trend rules get whipsawed in choppy markets. The point is to decide in advance and stay out of panic.",
+    zh: "规则也不是万能的：这一局机器人没跑赢躺平，因为震荡市里趋势规则会被反复打脸。关键是提前定好规则，别在恐慌时做决定。"
+  },
   ctaButton: { en: "Meet the AllPath Trading Agent", zh: "了解 AllPath 交易智能体" },
   disclaimer: {
     en: "Real historical weekly prices (adjusted). For learning and fun, not financial advice. Past performance says nothing certain about the future.",
@@ -151,6 +155,11 @@ export const TITLES: Record<TitleId, { name: L; desc: L; art: string }> = {
   diamond: {
     name: { en: "Diamond Hands", zh: "钻石手" },
     desc: { en: "You kept up with doing nothing. That's harder than it sounds.", zh: "你跟上了「躺平」的收益。这比听起来难多了。" },
+    art: "mood-diamond"
+  },
+  bagholder: {
+    name: { en: "Professional Bagholder", zh: "资深站岗员" },
+    desc: { en: "You held on all the way down, just like doing nothing would have. Loyal, brave, and down a lot.", zh: "你一路拿着跌下去，和躺平的结果一样。忠诚、勇敢，而且亏了很多。" },
     art: "mood-diamond"
   },
   soldearly: {

@@ -22,6 +22,8 @@ SCENARIOS = {
     "grind": ("2017-01-03", "2018-02-28", {"index": "^GSPC", "tech": "QQQ", "spicy": "BTC-USD"}),
     "tariff": ("2025-01-06", "2025-09-30", {"index": "^GSPC", "tech": "QQQ", "spicy": "NVDA"}),
     "dip": ("2023-07-17", "2024-02-29", {"index": "^GSPC", "tech": "QQQ", "spicy": "TSLA"}),
+    "chop": ("2015-05-01", "2016-11-30", {"index": "^GSPC", "tech": "QQQ", "spicy": "BHC"}),
+    "ai2024": ("2024-03-01", "2024-12-31", {"index": "^GSPC", "tech": "QQQ", "spicy": "SMCI"}),
 }
 
 out = {}

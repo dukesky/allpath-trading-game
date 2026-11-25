@@ -917,5 +917,205 @@ export const SCENARIOS: Scenario[] = [
       { en: "'Cash pays 5%' felt safe right before stocks jumped 20%.", zh: "「存款有 5%」感觉很安全，然后股市就涨了 20%。" },
       { en: "A single hot stock can fall while the index rises. The index is the default for a reason.", zh: "单只热门股可以在大盘上涨时下跌。指数是默认选择，是有原因的。" }
     ]
+  },
+  {
+    id: "chop",
+    code: 10,
+    title: { en: "The Going-Nowhere Market of 2015–16", zh: "2015–16 原地踏步的震荡市" },
+    period: { en: "May 2015 – Nov 2016", zh: "2015 年 5 月 – 2016 年 11 月" },
+    rarity: {
+      en: "Choppy, go-nowhere stretches like this happen every few years. Two 10%+ drops that both recover within months is pretty normal.",
+      zh: "这种来回震荡、原地踏步的行情每隔几年就有一次。半年内两次跌超 10% 又都涨回来，相当正常。"
+    },
+    assets: {
+      index: { hidden: INDEX_HIDDEN, reveal: INDEX_REVEAL },
+      tech: { hidden: TECH_HIDDEN, reveal: TECH_REVEAL },
+      spicy: {
+        hidden: { en: "🌶️ A pharma roll-up that Wall Street's star funds love", zh: "🌶️ 一家华尔街明星基金最爱的「并购型」药企" },
+        reveal: {
+          en: "Valeant Pharmaceuticals. Famous hedge funds owned it. It fell about 94% after questions about its drug pricing and a secret pharmacy.",
+          zh: "威朗制药（Valeant）。著名对冲基金重仓持有。药品定价和一家秘密药房的问题曝光后，股价跌了约 94%。"
+        }
+      }
+    },
+    steps: [
+      {
+        date: "2015-05-01",
+        headline: {
+          en: "Stocks are at record highs but have barely moved in six months. The central bank says its first rate hike in nearly a decade is coming 'this year'.",
+          zh: "股市在历史高位，但半年来几乎没动。央行说近十年来的首次加息「今年就会来」。"
+        },
+        feed: { en: "@stonks4life: Boring market = free money. Buy everything.", zh: "@股票永远涨：无聊的市场就是白送钱，全买。" },
+        pro: { en: "Rates at 0% since 2008. Index P/E around 18. The strong dollar is squeezing exporters' profits.", zh: "利率从 2008 年起一直是 0%。大盘市盈率约 18。美元走强挤压出口企业利润。" }
+      },
+      {
+        date: "2015-07-10",
+        headline: {
+          en: "Greece voted 'no' on a bailout and might leave the euro. China's stock market crashed 30% in a month even with the government buying.",
+          zh: "希腊公投否决救助方案，可能退出欧元区。中国股市一个月暴跌 30%，政府救市也没用。"
+        },
+        feed: { en: "Uncle Bob: 'Is Greece a stock? Should I sell it?'", zh: "鲍勃叔叔：「希腊是一只股票吗？我要不要卖？」" },
+        pro: { en: "US index only about 2% below its high. Volatility index up to 19.", zh: "美股大盘只比高点低约 2%。波动率指数升到 19。" }
+      },
+      {
+        date: "2015-08-28",
+        headline: {
+          en: "China surprised everyone by devaluing its currency. Stocks fell 11% in a week. On Monday the Dow opened 1,000 points down and many funds briefly traded at crazy prices.",
+          zh: "中国意外让人民币贬值。美股一周跌了 11%。周一道指开盘暴跌 1000 点，很多基金一度出现离谱的价格。"
+        },
+        feed: { en: "@permabear: 2008 all over again. Get out.", zh: "@永远看空：2008 重演，快跑。" },
+        pro: { en: "Volatility index spiked above 50 for the first time since 2011.", zh: "波动率指数自 2011 年以来首次冲破 50。" },
+        hindsight: { en: "The index bottomed that Tuesday, retested the low in late September, then rallied about 12% by early November.", zh: "大盘在那个周二见底，九月底二次探底，然后到十一月初反弹了约 12%。" }
+      },
+      {
+        date: "2015-10-23",
+        headline: {
+          en: "Rebound: the index is up about 10% from its August low. Meanwhile Wall Street's favorite pharma stock crashed after a short seller questioned a secret pharmacy it controls.",
+          zh: "反弹了：大盘从八月低点涨了约 10%。与此同时，华尔街最爱的那只药企股暴跌，因为做空机构质疑它暗中控制的一家药房。"
+        },
+        feed: { en: "@hedgefund_fan: The smartest funds own the pharma stock. Buying the dip.", zh: "@对冲基金粉：最聪明的基金都持有那只药企，抄底。" },
+        pro: { en: "Rate hike delayed again. Big Tech earnings strong.", zh: "加息再次推迟。科技巨头财报强劲。" }
+      },
+      {
+        date: "2015-12-18",
+        headline: {
+          en: "The central bank raised rates for the first time in nearly a decade. Oil fell below $35. A junk-bond fund froze withdrawals.",
+          zh: "央行近十年来首次加息。油价跌破 35 美元。一只垃圾债基金暂停赎回。"
+        },
+        feed: { en: "Your cousin: 'My oil stocks are down 60%. Averaging down!'", zh: "你表哥：「我的石油股跌了 60%，补仓摊薄成本！」" },
+        pro: { en: "Junk-bond spreads at 4-year highs. Energy earnings collapsing.", zh: "垃圾债利差创四年新高。能源公司盈利崩塌。" }
+      },
+      {
+        date: "2016-02-12",
+        headline: {
+          en: "Worst start to a year ever: stocks down about 10% in six weeks. Oil hit $26. Big European banks are sliding. Recession talk everywhere.",
+          zh: "史上最差的开年：六周跌了约 10%。油价跌到 26 美元。欧洲大银行股价下滑。到处都在说衰退。"
+        },
+        feed: { en: "@permabear: Told you. This is the big one.", zh: "@永远看空：早说了，这次是大的。" },
+        pro: { en: "Volatility index about 28. Markets now expect no more rate hikes this year.", zh: "波动率指数约 28。市场预计今年不会再加息。" },
+        mark: "bottom",
+        markSlots: ["index", "tech"],
+        hindsight: { en: "February 11, 2016 was the bottom. The index hit a new record high by July.", zh: "2016 年 2 月 11 日就是底部。七月大盘就创了历史新高。" }
+      },
+      {
+        date: "2016-06-24",
+        headline: {
+          en: "Shock vote: the UK chose to leave the EU. Stocks fell 3.6% in a day and the British pound hit a 31-year low.",
+          zh: "意外结果：英国公投脱欧。美股一天跌了 3.6%，英镑跌到 31 年最低。"
+        },
+        feed: { en: "Everyone: 'What is a Brexit and why is my retirement account down?'", zh: "所有人：「脱欧是啥？为什么我的养老金账户在跌？」" },
+        pro: { en: "Volatility index jumped to 25. Bond yields at record lows.", zh: "波动率指数跳到 25。债券收益率创历史新低。" },
+        hindsight: { en: "Stocks won back the whole drop in about two weeks and hit records in July.", zh: "大约两周就收复全部跌幅，七月创了新高。" }
+      },
+      {
+        date: "2016-11-04",
+        headline: {
+          en: "The election is Tuesday. Stocks fell nine days in a row, the longest losing streak since 1980. Pundits say a surprise result would crash the market.",
+          zh: "周二大选。股市连跌九天，1980 年以来最长的连跌。专家说如果爆冷，股市会崩。"
+        },
+        feed: { en: "@permabear: If the outsider wins, minus 10% overnight.", zh: "@永远看空：如果黑马赢了，一夜跌 10%。" },
+        pro: { en: "Volatility index above 22. Betting markets heavily favor the front-runner.", zh: "波动率指数超过 22。博彩市场大幅押注领先者。" },
+        hindsight: { en: "The surprise happened. Futures fell 5% on election night, then stocks rallied to records within days.", zh: "真的爆冷了。大选当夜期货跌了 5%，几天后股市却涨到了新高。" }
+      }
+    ],
+    lessons: [
+      { en: "A year and a half of scary headlines, and the index ended about where it started.", zh: "一年半的吓人头条，大盘最后基本回到原点。" },
+      { en: "China, oil, Brexit, the election: each scare felt like the big one. None of them was.", zh: "中国、石油、脱欧、大选：每次恐慌都像「大的要来了」，结果一次都不是。" },
+      { en: "A stock the 'smart money' loves can still go nearly to zero.", zh: "「聪明钱」最爱的股票，照样可以跌到几乎归零。" }
+    ]
+  },
+  {
+    id: "ai2024",
+    code: 11,
+    title: { en: "The 2024 AI Bull Year", zh: "2024 AI 牛市年" },
+    period: { en: "Mar 2024 – Dec 2024", zh: "2024 年 3 月 – 2024 年 12 月" },
+    rarity: {
+      en: "A strong year (+20% or more) comes about one year in three or four. Even good years usually include one scary 5–10% drop.",
+      zh: "涨 20% 以上的好年份，大约三四年一次。即使是好年份，通常也会有一次吓人的 5–10% 下跌。"
+    },
+    assets: {
+      index: { hidden: INDEX_HIDDEN, reveal: INDEX_REVEAL },
+      tech: { hidden: TECH_HIDDEN, reveal: TECH_REVEAL },
+      spicy: {
+        hidden: { en: "🌶️ An AI server maker that tripled this year", zh: "🌶️ 一家今年涨了三倍的 AI 服务器公司" },
+        reveal: {
+          en: "Super Micro Computer. It roughly quadrupled in early 2024 and joined the S&P 500. Then came a short-seller report, a delayed annual report and its auditor quitting, and it fell about 85% from the peak.",
+          zh: "超微电脑（Super Micro）。2024 年初涨了约四倍并进入标普 500。随后做空报告、年报延迟、审计师辞职接连而来，股价从高点跌了约 85%。"
+        }
+      }
+    },
+    steps: [
+      {
+        date: "2024-03-01",
+        headline: {
+          en: "Stocks at record highs, driven by AI. An AI server maker has tripled this year and was just added to the 500-stock index. Rate cuts are expected soon.",
+          zh: "AI 带动股市创新高。一家 AI 服务器公司今年涨了三倍，刚被纳入 500 指数。市场预计很快降息。"
+        },
+        feed: { en: "@ai_maxi: Every company will need AI servers. This is 1995 again.", zh: "@AI 信徒：每家公司都需要 AI 服务器。这就是 1995 年。" },
+        pro: { en: "Rates at 5.25–5.5%. Market expects three cuts this year. Index P/E about 21.", zh: "利率 5.25–5.5%。市场预计今年降息三次。大盘市盈率约 21。" }
+      },
+      {
+        date: "2024-04-19",
+        headline: {
+          en: "Inflation came in hot three months in a row and rate cuts are being pushed back. Tension in the Middle East. Stocks down about 5% from the high.",
+          zh: "通胀连续三个月超预期，降息被推迟。中东局势紧张。股市从高点跌了约 5%。"
+        },
+        feed: { en: "@permabear: No cuts this year. Correction incoming.", zh: "@永远看空：今年不会降息了，回调要来了。" },
+        pro: { en: "10-year yield back up to 4.6%.", zh: "十年期收益率回升到 4.6%。" }
+      },
+      {
+        date: "2024-06-14",
+        headline: {
+          en: "Record highs again. The top AI chip maker is now worth over $3 trillion. The AI server maker is well below its March peak.",
+          zh: "又创新高。头号 AI 芯片公司市值超过 3 万亿美元。那家 AI 服务器公司已经远低于三月的高点。"
+        },
+        feed: { en: "Your cousin: 'Should I buy the AI chip stock? It's the only thing going up.'", zh: "你表哥：「要不要买那只 AI 芯片股？就它在涨。」" },
+        pro: { en: "Inflation finally cooling. Market now expects one or two cuts.", zh: "通胀终于降温。市场预计降息一到两次。" }
+      },
+      {
+        date: "2024-08-02",
+        headline: {
+          en: "A weak jobs report sparked recession fears. Japan raised rates, and a popular trade (borrowing cheap yen to buy stocks) is unwinding fast. Tech is down 10% from its July high.",
+          zh: "疲弱的就业数据引发衰退担忧。日本加息，一个热门交易（借便宜日元买股票）正在快速平仓。科技股从七月高点跌了 10%。"
+        },
+        feed: { en: "@permabear: The AI bubble is popping. Finally.", zh: "@永远看空：AI 泡沫终于破了。" },
+        pro: { en: "Volatility index jumped to 23. Japanese stocks fell almost 6% on Friday.", zh: "波动率指数跳到 23。日本股市周五跌了近 6%。" },
+        mark: "bottom",
+        markSlots: ["index", "tech"],
+        hindsight: { en: "The next Monday Japan's market fell 12% in a day, and that was the low. The index was back at record highs within about six weeks.", zh: "下周一日本股市单日暴跌 12%，那就是最低点。大约六周后大盘就重回新高。" }
+      },
+      {
+        date: "2024-09-20",
+        headline: {
+          en: "The central bank cut rates by 0.5%, its first cut in four years. Stocks at record highs. Last month a short seller accused the AI server maker of accounting problems.",
+          zh: "央行降息 0.5%，四年来首次降息。股市创新高。上个月一家做空机构指控那家 AI 服务器公司财务有问题。"
+        },
+        feed: { en: "@ai_maxi: Short sellers always lie. Buying the server stock dip.", zh: "@AI 信徒：做空机构都在撒谎，抄底服务器股。" },
+        pro: { en: "More cuts signaled. Volatility index about 16.", zh: "央行暗示还会降息。波动率指数约 16。" }
+      },
+      {
+        date: "2024-11-01",
+        headline: {
+          en: "The election is next week. The AI server maker's auditor just resigned, and the stock lost a third of its value in one day.",
+          zh: "下周大选。那家 AI 服务器公司的审计师刚刚辞职，股价一天跌掉三分之一。"
+        },
+        feed: { en: "@ai_maxi: Accounting is a social construct. HODL 💎", zh: "@AI 信徒：会计只是一种社会建构，死拿 💎" },
+        pro: { en: "Index about 2% below its record. Volatility index 22.", zh: "大盘比纪录高点低约 2%。波动率指数 22。" }
+      },
+      {
+        date: "2024-11-15",
+        headline: {
+          en: "Post-election rally: the index topped 6,000 for the first time. Bitcoin hit $90,000.",
+          zh: "大选后大涨：大盘首次突破 6000 点。比特币冲上 9 万美元。"
+        },
+        feed: { en: "Your cousin: 'Stocks only go up. I'm quitting my job to trade.'", zh: "你表哥：「股票只会涨，我要辞职全职炒股。」" },
+        pro: { en: "Index up about 23% this year. P/E above 22.", zh: "大盘今年涨了约 23%。市盈率超过 22。" }
+      }
+    ],
+    lessons: [
+      { en: "Even a great year had a moment when 'the AI bubble is popping' felt true.", zh: "即使是大牛年，也有那么一刻让人觉得「AI 泡沫破了」。" },
+      { en: "A hot theme doesn't protect a single stock: the hottest name fell about 85% while the index gained 20%+.", zh: "热门主题保护不了单只股票：最火的那只跌了约 85%，而大盘涨了 20% 以上。" },
+      { en: "Sitting in cash through a strong year is the quietest way to fall behind.", zh: "牛市里一直拿着现金，是最安静的落后方式。" }
+    ]
   }
 ];

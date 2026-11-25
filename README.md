@@ -9,9 +9,9 @@ Play: **https://trading.all-path.com/game** · English and 中文 · not financi
 
 ## Scenarios
 
-Nine hidden scenarios, each with three assets (S&P 500, Nasdaq-100, and one "spicy" stock revealed at the end):
+Eleven hidden scenarios, each with three assets (S&P 500, Nasdaq-100, and one "spicy" stock revealed at the end):
 dot-com bubble, 2008 GFC, 2020 COVID crash, 2022 rate hikes, 2018 trade war, 2021 meme stocks, the calm 2017
-bull + crypto mania, the 2025 tariff shock, and an ordinary 10% correction (2023). Headlines describe what was
+bull + crypto mania, the 2025 tariff shock, plus three everyday markets: an ordinary 10% correction (2023), the choppy go-nowhere 2015–16, and the 2024 AI bull year. Headlines describe what was
 in the news at each decision date with names blurred; prices are real weekly closes (split/dividend adjusted).
 
 ## Develop

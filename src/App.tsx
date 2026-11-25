@@ -531,6 +531,7 @@ function ResultScreen(props: {
         <Art name="robot" className="cta-art" />
         <h3>{t(UI.ctaTitle)}</h3>
         <p>{t(UI.ctaBody)}</p>
+        {botRet < bhRet - 0.05 && <p>{t(UI.ctaRobotLost)}</p>}
         <a className="btn btn-dark" href={`${SITE}/?ref=bagsim${lang === "zh" ? "-zh" : ""}`}>{t(UI.ctaButton)}</a>
       </section>
     </main>

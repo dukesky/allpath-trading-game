@@ -46,6 +46,8 @@ PROMPTS = {
     "sc-grind": (f"Wide reveal illustration (16:9): 2017 calm bull market and crypto mania. {LEEK} on a slow peaceful escalator going up, while next to it a shiny golden coin rocket explodes into fireworks then nosedives; a bored bear sleeping. {STYLE}", "16:9"),
     "sc-tariff": (f"Wide reveal illustration (16:9): 2025 tariff shock and AI boom. {LEEK} on a wild rollercoaster made of tariff tickets plunging then launching up into a glowing AI microchip sun. {STYLE}", "16:9"),
     "sc-dip": (f"Wide reveal illustration (16:9): an ordinary 10% stock market correction. {LEEK} stepping over a small pothole on a long upward hiking trail, overreacting dramatically, while snails stroll past calmly. {STYLE}", "16:9"),
+    "sc-chop": (f"Wide reveal illustration (16:9): a choppy sideways market. {LEEK} on a seesaw in the middle of a playground while storm clouds labelled only with drawn symbols (a falling oil barrel, a broken currency coin, a ballot box, a tiny teacup with a union-jack-like pattern but no text) circle overhead; the leek dizzy, the ground perfectly flat. {STYLE}", "16:9"),
+    "sc-ai2024": (f"Wide reveal illustration (16:9): 2024 AI bull market. {LEEK} riding a glowing robot-shaped hot air balloon rising over a city of server racks, waving happily, while one tall server tower in the corner topples over with paperwork flying out; a small yen coin rolling and causing a brief wobble. {STYLE}", "16:9"),
 }
 
 def call(name):
