@@ -1,7 +1,0 @@
-{
-  "version": "0.0.1",
-  "configurations": [
-    { "name": "game-dev", "runtimeExecutable": "npx", "runtimeArgs": ["vite", "--port", "5174", "--strictPort"], "port": 5174, "url": "http://localhost:5174" },
-    { "name": "site-dev", "runtimeExecutable": "bash", "runtimeArgs": ["-c", "cd ../allpath/.claude/worktrees/trading-game && npx next dev -p 3010"], "port": 3010, "url": "http://trading.localhost:3010" }
-  ]
-}
