@@ -6,6 +6,7 @@ export type CardInput = {
   artUrl: string;
   gameTitle: string;
   scenarioLine: string; // e.g. "剧本 #4 🌶️"
+  earnedLine: string; // e.g. "我获得了称号"
   titleName: string;
   titleDesc: string;
   finalEq: number;
@@ -135,16 +136,20 @@ export async function drawShareCard(input: CardInput): Promise<Blob | null> {
 
   ctx.textAlign = "center";
   ctx.fillStyle = INK;
+  ctx.font = font(body, 30);
+  ctx.fillStyle = "#6b5545";
+  ctx.fillText(input.earnedLine, W / 2, ay + as + 62, cw - 60);
+  ctx.fillStyle = INK;
   ctx.font = font(display, 72);
-  ctx.fillText(input.titleName, W / 2, ay + as + 110, cw - 60);
+  ctx.fillText(input.titleName, W / 2, ay + as + 138, cw - 60);
 
   ctx.font = font(body, 32);
   ctx.fillStyle = "#4a3828";
   const descLines = wrap(ctx, input.titleDesc, cw - 140, zh).slice(0, 2);
-  descLines.forEach((l, i) => ctx.fillText(l, W / 2, ay + as + 170 + i * 46));
+  descLines.forEach((l, i) => ctx.fillText(l, W / 2, ay + as + 192 + i * 44));
 
   // Money line.
-  const my = ay + as + 300;
+  const my = ay + as + 316;
   ctx.font = font(display, 64);
   const left = money(10_000) + "  →  ";
   const right = money(input.finalEq);

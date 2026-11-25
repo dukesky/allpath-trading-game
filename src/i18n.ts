@@ -83,7 +83,8 @@ export const UI = {
     en: "Real historical weekly prices (adjusted). For learning and fun, not financial advice. Past performance says nothing certain about the future.",
     zh: "使用真实历史周线价格（已复权）。仅供学习和娱乐，不构成投资建议。历史表现不代表未来。"
   },
-  shareLine: { en: "Can you beat me?", zh: "你能赢我吗？" },
+  shareLine: { en: "Your turn. Can you beat me? 👉", zh: "你也来试试吧！👉" },
+  earned: { en: "I earned the title", zh: "我获得了称号" },
   lang: { en: "中文", zh: "EN" },
   start: { en: "Start", zh: "开局" }
 } satisfies Record<string, L | L[]>;

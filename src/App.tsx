@@ -409,12 +409,13 @@ function GuessScreen({ t, scenario, guess, onGuess, onNext }: {
 
 const shareUrl = (run: Run) => `${GAME_URL}?s=${run.scenario.code}&a=${run.slot}`;
 
-function shareText(t: T, run: Run, emojis: string, ret: number, bh: number, bot: number, titleName: string) {
+function shareText(t: T, run: Run, emojis: string, ret: number, finalEq: number, titleName: string) {
   return [
-    `🥬 ${t(UI.title)} · ${t(UI.scenarioN)}${run.scenario.code} ${SLOT_EMOJI[run.slot]}`,
-    `${emojis}`,
-    `${t(UI.you)}: ${pct(ret)} | ${t({ en: "Do nothing", zh: "躺平" })}: ${pct(bh)} | 🤖 ${pct(bot)}`,
-    `"${titleName}"`,
+    t({
+      en: `🥬 I earned "${titleName}" in Bagholder Simulator! (${t(UI.scenarioN)}${run.scenario.code} ${SLOT_EMOJI[run.slot]})`,
+      zh: `🥬 我在韭菜模拟器获得了「${titleName}」！（${t(UI.scenarioN)}${run.scenario.code} ${SLOT_EMOJI[run.slot]}）`
+    }),
+    `${money(START_CASH)} → ${money(finalEq)} (${pct(ret)})  ${emojis}`,
     t(UI.shareLine)
   ].join("\n");
 }
@@ -450,7 +451,7 @@ function ResultScreen(props: {
     drawShareCard({
       lang, artUrl: `${BASE}art/${title.art}.webp`, gameTitle: t(UI.title),
       scenarioLine: `${t(UI.scenarioN)}${sc.code} ${SLOT_EMOJI[game.run.slot]}`,
-      titleName: t(title.name), titleDesc: t(title.desc), finalEq: s.finalEq, ret: s.ret,
+      earnedLine: t(UI.earned), titleName: t(title.name), titleDesc: t(title.desc), finalEq: s.finalEq, ret: s.ret,
       bhLabel: `🗿 ${t({ en: "Do nothing", zh: "躺平" })}`, bhRet, botLabel: "🤖", botRet,
       emojis: s.emojis, challenge: t(UI.shareLine), url: shareUrl(game.run)
     }).then((blob) => {
@@ -463,7 +464,7 @@ function ResultScreen(props: {
   useEffect(() => () => { if (cardUrl) URL.revokeObjectURL(cardUrl); }, [cardUrl]);
   const isPhone = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
   const doShare = async () => {
-    const text = shareText(t, game.run, s.emojis, s.ret, bhRet, botRet, t(title.name));
+    const text = shareText(t, game.run, s.emojis, s.ret, s.finalEq, t(title.name));
     const url = shareUrl(game.run);
     try {
       if (navigator.share && isPhone) {
