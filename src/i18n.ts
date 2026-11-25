@@ -65,6 +65,7 @@ export const UI = {
   nextMove: { en: "next", zh: "之后" },
   lessons: { en: "What this one teaches", zh: "这一局的教训" },
   share: { en: "Share my result", zh: "分享我的战绩" },
+  saveCard: { en: "Save result image", zh: "保存战绩图" },
   copied: { en: "Copied! Paste it anywhere.", zh: "已复制！去粘贴分享吧。" },
   again: { en: "Roll a new scenario", zh: "再来一局（随机剧本）" },
   retry: { en: "Replay this one", zh: "重玩这一局" },

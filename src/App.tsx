@@ -7,6 +7,7 @@ import {
 } from "./game.ts";
 import { ACTIONS, PERSONAS, type Lang, type PersonaId, SLOT_EMOJI, TITLES, UI, guruTip, tr } from "./i18n.ts";
 import { EquityChart, PriceChart } from "./Chart.tsx";
+import { drawShareCard } from "./shareCard.ts";
 
 const DATA = rawData as Record<string, ScenarioData>;
 const BASE = import.meta.env.BASE_URL;
@@ -406,13 +407,15 @@ function GuessScreen({ t, scenario, guess, onGuess, onNext }: {
   );
 }
 
+const shareUrl = (run: Run) => `${GAME_URL}?s=${run.scenario.code}&a=${run.slot}`;
+
 function shareText(t: T, run: Run, emojis: string, ret: number, bh: number, bot: number, titleName: string) {
   return [
     `🥬 ${t(UI.title)} · ${t(UI.scenarioN)}${run.scenario.code} ${SLOT_EMOJI[run.slot]}`,
     `${emojis}`,
     `${t(UI.you)}: ${pct(ret)} | ${t({ en: "Do nothing", zh: "躺平" })}: ${pct(bh)} | 🤖 ${pct(bot)}`,
     `"${titleName}"`,
-    `${t(UI.shareLine)} ${GAME_URL}?s=${run.scenario.code}&a=${run.slot}`
+    t(UI.shareLine)
   ].join("\n");
 }
 
@@ -435,17 +438,49 @@ function ResultScreen(props: {
   ].sort((a, b) => b.ret - a.ret);
   const maxAbs = Math.max(...rows.map((r) => Math.abs(r.ret)), 0.01);
 
+  // Pre-render the result card so the share sheet opens within the tap (iOS needs that).
+  const [card, setCard] = useState<File | null>(null);
+  useEffect(() => {
+    let alive = true;
+    drawShareCard({
+      lang, artUrl: `${BASE}art/${title.art}.webp`, gameTitle: t(UI.title),
+      scenarioLine: `${t(UI.scenarioN)}${sc.code} ${SLOT_EMOJI[game.run.slot]}`,
+      titleName: t(title.name), titleDesc: t(title.desc), finalEq: s.finalEq, ret: s.ret,
+      bhLabel: `🗿 ${t({ en: "Do nothing", zh: "躺平" })}`, bhRet, botLabel: "🤖", botRet,
+      emojis: s.emojis, challenge: t(UI.shareLine), url: shareUrl(game.run)
+    }).then((blob) => {
+      if (alive && blob) setCard(new File([blob], "bagholder-simulator.png", { type: "image/png" }));
+    });
+    return () => { alive = false; };
+  }, [lang, s, sc.code, game.run, title, bhRet, botRet]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const cardUrl = useMemo(() => (card ? URL.createObjectURL(card) : null), [card]);
+  useEffect(() => () => { if (cardUrl) URL.revokeObjectURL(cardUrl); }, [cardUrl]);
+  const isPhone = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
   const doShare = async () => {
     const text = shareText(t, game.run, s.emojis, s.ret, bhRet, botRet, t(title.name));
+    const url = shareUrl(game.run);
     try {
-      if (navigator.share && /Mobi|Android|iPhone/i.test(navigator.userAgent)) {
-        await navigator.share({ text });
+      if (navigator.share && isPhone) {
+        if (card && navigator.canShare?.({ files: [card] })) {
+          await navigator.share({ files: [card], text: `${text} ${url}` });
+        } else {
+          await navigator.share({ text, url });
+        }
         return;
       }
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(`${text} ${url}`);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2500);
     } catch { /* user cancelled */ }
+  };
+  const saveCard = () => {
+    if (!card) return;
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(card);
+    a.download = card.name;
+    a.click();
+    window.setTimeout(() => URL.revokeObjectURL(a.href), 2000);
   };
 
   return (
@@ -523,6 +558,8 @@ function ResultScreen(props: {
 
       <div className="result-actions">
         <button className="btn btn-primary btn-big" onClick={doShare}>{copied ? t(UI.copied) : t(UI.share)}</button>
+        <button className="btn" onClick={saveCard} disabled={!card}>🖼️ {t(UI.saveCard)}</button>
+        {cardUrl && <img className="card-preview" src={cardUrl} alt={t(UI.saveCard)} />}
         <button className="btn btn-big" onClick={onAgain}>🎲 {t(UI.again)}</button>
         <button className="btn btn-quiet" onClick={onRetry}>{t(UI.retry)}</button>
       </div>
