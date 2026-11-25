@@ -66,3 +66,16 @@ describe("titles", () => {
     expect(pickTitle([], 50, 9000)).toBe("harvested");
   });
 });
+
+describe("asset-specific marks", () => {
+  it("buying the meme-stock peak week only counts as 'bought the top' for the meme stock", () => {
+    const sc = SCENARIOS.find((s) => s.id === "meme")!;
+    const play = (slot: "tech" | "spicy") => {
+      let g = startGame(makeRun(sc, D.meme, slot));
+      for (const a of ["half", "half", "all"] as const) g = applyAction(g, a);
+      return g.log[2].mark;
+    };
+    expect(play("spicy")).toBe("top");
+    expect(play("tech")).toBeUndefined();
+  });
+});

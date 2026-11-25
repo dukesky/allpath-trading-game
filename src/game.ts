@@ -67,11 +67,17 @@ export function applyAction(g: GameState, action: Action): GameState {
   const log: StepLog[] = [...g.log, {
     action, expBefore, expAfter, equityBefore: eqBefore, equityAfter: Math.max(0, eqAfter),
     assetMove: close[next] / price - 1, liquidated: res.liquidatedAt !== null,
-    mark: run.scenario.steps[g.step]?.mark
+    mark: markFor(run, g.step)
   }];
   const wiped = eqAfter < WIPED_BELOW;
   const done = wiped || next >= run.iEnd;
   return { ...g, p: res.p, log, curve: [...g.curve, ...res.curve], markers, step: g.step + 1, done, wiped };
+}
+
+function markFor(run: Run, step: number) {
+  const st = run.scenario.steps[step];
+  if (!st?.mark) return undefined;
+  return !st.markSlots || st.markSlots.includes(run.slot) ? st.mark : undefined;
 }
 
 export type Summary = {

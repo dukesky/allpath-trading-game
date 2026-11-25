@@ -9,6 +9,8 @@ export type Step = {
   feed: L;
   pro: L;
   mark?: "top" | "bottom";
+  /** Assets the mark applies to (default: all). Hot stocks often peak or bottom at other times. */
+  markSlots?: ("index" | "tech" | "spicy")[];
   hindsight?: L;
 };
 export type AssetText = { hidden: L; reveal: L };
@@ -67,7 +69,7 @@ export const SCENARIOS: Scenario[] = [
         },
         feed: { en: "Uncle Bob: 'Moved the college fund into tech. Easy money.'", zh: "鲍勃叔叔：「把孩子的大学基金都换成科技股了，稳赚。」" },
         pro: { en: "Rates raised 5 times since last summer. Tech IPOs priced at 50x sales.", zh: "去年夏天以来已经加息 5 次。科技新股按 50 倍市销率定价。" },
-        mark: "top",
+        mark: "top", markSlots: ["index", "tech"],
         hindsight: { en: "This was THE top of the bubble. The tech index wouldn't see this level again for 15 years.", zh: "这就是泡沫的最顶点。科技指数 15 年后才重新回到这里。" }
       },
       {
@@ -132,7 +134,7 @@ export const SCENARIOS: Scenario[] = [
         },
         feed: { en: "The forum is silent. Nobody posts anymore. 🦗", zh: "论坛一片寂静，已经没人发帖了。🦗" },
         pro: { en: "Cheapest valuations in a decade. Central bank rate at 1.75%.", zh: "估值为十年来最低。央行利率 1.75%。" },
-        mark: "bottom",
+        mark: "bottom", markSlots: ["index", "tech"],
         hindsight: { en: "This was the bottom (October 9, 2002). The index rose about 30% over the next 14 months.", zh: "这就是底部（2002 年 10 月 9 日）。之后 14 个月大盘涨了约 30%。" }
       }
     ],
@@ -284,7 +286,7 @@ export const SCENARIOS: Scenario[] = [
         },
         feed: { en: "@stonks4life: Remember the bird flu panic? Nothing happened. BTFD.", zh: "@股票永远涨：还记得禽流感恐慌吗？啥事没有。逢跌就买。" },
         pro: { en: "Asian supply chains disrupted. Volatility index creeping up to 17.", zh: "亚洲供应链中断。波动率指数升到 17。" },
-        mark: "top",
+        mark: "top", markSlots: ["index", "tech"],
         hindsight: { en: "The index peaked two days earlier (February 19). It was about to fall 34% in a month.", zh: "大盘两天前刚见顶（2 月 19 日），接下来一个月要跌 34%。" }
       },
       {
@@ -427,7 +429,7 @@ export const SCENARIOS: Scenario[] = [
         },
         feed: { en: "The star innovation fund is down 75% from its peak. Its fans have gone quiet.", zh: "那只明星创新基金从高点跌了 75%，粉丝们都沉默了。" },
         pro: { en: "Rates heading toward 4.5%. 2-year yield 4.5%.", zh: "利率将升到 4.5%。两年期收益率 4.5%。" },
-        mark: "bottom",
+        mark: "bottom", markSlots: ["index", "tech"],
         hindsight: { en: "October 12, 2022 was the bottom for the index.", zh: "2022 年 10 月 12 日是大盘的最低点。" }
       },
       {
@@ -597,8 +599,8 @@ export const SCENARIOS: Scenario[] = [
         },
         feed: { en: "r/stonks: 'HOLD THE LINE 💎🙌 $1,000 is not a meme'", zh: "论坛网友：「守住防线 💎🙌 1000 美元不是梦」" },
         pro: { en: "Price is about 100x the company's estimated earnings power. Volatility is off the charts.", zh: "股价约是公司盈利能力的 100 倍。波动率爆表。" },
-        mark: "top",
-        hindsight: { en: "This was the peak week. Two weeks later it was down about 85%.", zh: "这就是顶部那一周。两周后跌了约 85%。" }
+        mark: "top", markSlots: ["spicy"],
+        hindsight: { en: "The retailer peaked this week. Two weeks later it was down about 85%.", zh: "那家零售商就在这一周见顶。两周后跌了约 85%。" }
       },
       {
         date: "2021-02-19",
@@ -717,7 +719,7 @@ export const SCENARIOS: Scenario[] = [
         },
         feed: { en: "Your barber: 'I mortgaged my house for coins. Lambo soon 🏎️'", zh: "你的理发师：「我抵押了房子买币，马上开兰博基尼 🏎️」" },
         pro: { en: "Tax cut signed into law. Volatility index around 10.", zh: "减税法案签署生效。波动率指数约 10。" },
-        mark: "top",
+        mark: "top", markSlots: ["spicy"],
         hindsight: { en: "The coin had peaked days earlier and was about to lose about 65%.", zh: "那个币几天前就见顶了，接下来要跌约 65%。" }
       },
       {

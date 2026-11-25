@@ -1,4 +1,4 @@
-"""Generate cartoon art through OpenRouter. Key read from ../allpath/.env.local (never printed).
+"""Generate cartoon art through OpenRouter. Key from $OPENROUTER_API_KEY or this repo's .env.local (never printed).
 
 Usage: python scripts/gen_art.py <name> [<name> ...]   (names from PROMPTS; 'all' = every missing one)
 If art/raw/hero.png exists it is passed as a style/character reference for the others.
@@ -7,8 +7,10 @@ import base64, json, sys, urllib.request, concurrent.futures as cf
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-ENV = ROOT.parent / "allpath" / ".env.local"
-KEY = next(l.split("=", 1)[1].strip().strip('"') for l in ENV.read_text().splitlines() if l.startswith("OPENROUTER_API_KEY="))
+import os
+ENV = ROOT / ".env.local"
+KEY = os.environ.get("OPENROUTER_API_KEY") or next(
+    l.split("=", 1)[1].strip().strip("\"'") for l in ENV.read_text().splitlines() if l.startswith("OPENROUTER_API_KEY="))
 MODEL = "google/gemini-3-pro-image"
 
 STYLE = ("Style: cute chibi anime cartoon, thick clean dark-brown outlines, flat cel shading, warm palette "
